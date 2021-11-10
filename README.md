@@ -4,8 +4,10 @@
 
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
-| name               | string | null: false |
+| nick_name          | string | null: false |
 | email              | string | null: false |
+| name               | string | null: false |
+| birthday           | string | null: false |
 | encrypted_password | string | null: false |
 
 ### Association
@@ -15,18 +17,21 @@
 
 ## items テーブル
 
-| Column      | Type       | Options           |
-| ----------- | ---------- | ----------------- |
-| title       | string     | null: false       |
-| explanation | string     | null: false       |
-| image       | string     | null: false       |
-| user        | references | foreign_key: true |
+| Column             | Type       | Options           |
+| ------------------ | ---------- | ----------------- |
+| title              | string     | null: false       |
+| explanation        | string     | null: false       |
+| image              | string     | null: false       |
+| product_details    | string     | null: false       |
+| regarding_delivery | string     | null: false       |
+| price              | string     | null: false       |
+| user               | references | foreign_key: true |
 
 
 ### Association
 
 * belongs_to :user
-* has_one :buys
+* has_one :buy
 
 ## buys テーブル
 
@@ -42,16 +47,16 @@
 * belongs_to :item
 * has_one :shipping address
 
-## shipping address テーブル
+## shipping addresses テーブル
 
 | Column          | Type       | Options           |
 | --------------- | ---------- | ----------------- |
-| ZIP/Postal code | string     | null: false       |
+| Postal_code | string     | null: false       |
 | country         | string     | null: false       |
 | city            | string     | null: false       |
 | address         | string     | null: false       |
-| building name   | string     |                   |
-| pone number     | string     | null: false       |
+| building_name   | string     |                   |
+| pone_number     | string     | null: false       |
 | buy             | references | foreign_key: true |
 
 
