@@ -2,16 +2,16 @@
 
 ## users テーブル
 
-| Column             | Type   | Options     |
-| ------------------ | ------ | ----------- |
-| nick_name          | string | null: false |
-| email              | string | null: false |
-| last_name          | string | null: false |
-| first_name         | string | null: false |
-| last_name_kana     | string | null: false |
-| first_name_kana    | string | null: false |
-| birthday           | string | null: false |
-| encrypted_password | string | null: false |
+| Column             | Type   | Options      |
+| ------------------ | ------ | ------------ |
+| nick_name          | string | null: false  |
+| email              | string | unique: true |
+| last_name          | string | null: false  |
+| first_name         | string | null: false  |
+| last_name_kana     | string | null: false  |
+| first_name_kana    | string | null: false  |
+| birthday           | date   | null: false  |
+| encrypted_password | string | null: false  |
 
 ### Association
 
@@ -24,13 +24,12 @@
 | --------------------- | ---------- | ----------------- |
 | title                 | string     | null: false       |
 | explanation           | text       | null: false       |
-| image                 | string     | null: false       |
 | category_id           | integer    | null: false       |
 | product_condition_id  | integer    | null: false       |
 | shipping_charges_id   | integer    | null: false       |
 | shipping_area_id      | integer    | null: false       |
 | bays_to_ship_id       | integer    | null: false       |
-| price                 | numeric    | null: false       |
+| price                 | integer    | null: false       |
 | user                  | references | foreign_key: true |
 
 ### Association
@@ -53,15 +52,15 @@
 
 ## shipping_addresses テーブル
 
-| Column          | Type       | Options           |
-| --------------- | ---------- | ----------------- |
-| Postal_code     | string     | null: false       |
-| country         | string     | null: false       |
-| city            | string     | null: false       |
-| address         | string     | null: false       |
-| building_name   | string     |                   |
-| pone_number     | string     | null: false       |
-| buy             | references | foreign_key: true |
+| Column           | Type       | Options           |
+| ---------------- | ---------- | ----------------- |
+| postal_code      | string     | null: false       |
+| shipping_area_id | integer    | null: false       |
+| city             | string     | null: false       |
+| address          | string     | null: false       |
+| building_name    | string     |                   |
+| telephone number | string     | null: false       |
+| buy              | references | foreign_key: true |
 
 ### Association
 
