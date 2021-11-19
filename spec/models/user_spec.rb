@@ -81,11 +81,16 @@ RSpec.describe User, type: :model do
         binding.pry
         expect(@user.errors.full_messages).to include("First name is invalid. Input full-width characters.")
       end
-      it "お名前カナ（全角）は、名字と名前がそれぞれ必須" do 
-        @user.last_name_kana = "ヤマダ"
+      it "お名前カナ（全角）は、名字が必須" do 
+        @user.last_name_kana = ""
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name is invalid. Input full-width characters.")
+      end
+      it "お名前カナ（全角）は、名前が必須" do 
         @user.first_name_kana = ""
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name kana is invalid. Input full-width katakana characters.")
+        binding.pry
+        expect(@user.errors.full_messages).to include("First name is invalid. Input full-width characters.")
       end
       it "お名前カナ（全角）は、全角（カタカナ）での入力が必須" do 
         @user.last_name_kana = "山田"
