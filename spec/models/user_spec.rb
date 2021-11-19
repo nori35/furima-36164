@@ -70,11 +70,16 @@ RSpec.describe User, type: :model do
         binding.pry
         expect(@user.errors.full_messages).to include("First name can't be blank")
       end
-      it "お名前（全角）は、全角（漢字・ひらがな・カタカナ）での入力が必須" do
+      it "名字（全角）は、全角（漢字・ひらがな・カタカナ）での入力が必須" do
         @user.last_name = "yamada"
-        @user.first_name = "tarou"
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name is invalid. Input full-width characters.", "First name is invalid. Input full-width characters.")
+      end
+      it "名前（全角）は、全角（漢字・ひらがな・カタカナ）での入力が必須" do
+        @user.first_name = "tarou"
+        @user.valid?
+        binding.pry
+        expect(@user.errors.full_messages).to include("First name is invalid. Input full-width characters.")
       end
       it "お名前カナ（全角）は、名字と名前がそれぞれ必須" do 
         @user.last_name_kana = "ヤマダ"
