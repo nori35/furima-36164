@@ -59,8 +59,13 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
-      it "お名前（全角）は、名字と名前がそれぞれ必須" do
-        @user.last_name = "山田"
+      it "お名前（全角）は、名字が必須" do
+        @user.last_name = ""
+        @user.valid?
+        binding.pry
+        expect(@user.errors.full_messages).to include("Last name can't be blank")
+      end
+      it "お名前（全角）は、名前が必須" do
         @user.first_name = ""
         @user.valid?
         expect(@user.errors.full_messages).to include("First name is invalid. Input full-width characters.")
