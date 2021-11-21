@@ -1,9 +1,4 @@
-class Item < ApplicationRecord
-  belongs_to :user
-  has_one_attached :image
-end
-
-class Genre < ActiveHash::Base
+class Days_to_ship < ActiveHash::Base
   self.data = [
     { id: 1, name: '--' },
     { id: 2, name: '経済' },
