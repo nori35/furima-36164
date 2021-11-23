@@ -8,4 +8,12 @@ class Item < ApplicationRecord
   belongs_to :shipping_charges
   belongs_to :shipping_area
   belongs_to :bays_to_ship
+
+  validates :title, :explanation, :price, presence: true
+
+  validates :category_id, numericality: { other_than: 1 , message: "can't be blank"} 
+  validates :product_condition_id, numericality: { other_than: 1 , message: "can't be blank"} 
+  validates :shipping_charges_id, numericality: { other_than: 1 , message: "can't be blank"} 
+  validates :shipping_area_id, numericality: { other_than: 1 , message: "can't be blank"} 
+  validates :bays_to_ship_id, numericality: { other_than: 1 , message: "can't be blank"} 
 end
