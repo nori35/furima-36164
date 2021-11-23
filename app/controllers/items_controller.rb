@@ -1,4 +1,8 @@
 class ItemsController < ApplicationController
+  def index
+    @items = Article.order("created_at DESC")
+  end
+
 
   private
 
