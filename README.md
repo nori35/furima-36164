@@ -28,7 +28,7 @@
 | product_condition_id  | integer    | null: false       |
 | shipping_charges_id   | integer    | null: false       |
 | shipping_area_id      | integer    | null: false       |
-| bays_to_ship_id       | integer    | null: false       |
+| days_to_ship_id       | integer    | null: false       |
 | price                 | integer    | null: false       |
 | user                  | references | foreign_key: true |
 
