@@ -1,14 +1,14 @@
 class ItemsController < ApplicationController
   def index
-    @items = Article.order("created_at DESC")
+    @items = Item.order("created_at DESC")
   end
 
   def new
-    @item = Article.new
+    @item = Item.new
   end
 
   def create
-    @article = Article.new(article_params)
+    @item = Item.new(item_params)
     if @item.save
       redirect_to root_path
     else
