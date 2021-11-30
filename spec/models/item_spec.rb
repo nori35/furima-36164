@@ -23,41 +23,39 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Title can't be blank")
       end
       it "explanationが空では登録できない" do
-        @item.email = ""
-        @user.valid?
-        expect(@user.errors.full_messages).to include("Email can't be blank")
+        @item.explanation = ""
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Explanation can't be blank")
       end
       it "category_idが空では登録できない" do
-        @user.save
-        another_user = FactoryBot.build(:user, email: @user.email)
-        another_user.valid?
-        expect(another_user.errors.full_messages).to include('Email has already been taken')
+        @item.category_id = ""
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category can't be blank")
       end
       it "product_condition_idが空では登録できない" do
-        @user.email = "test1234test"
-        @user.valid?
-        expect(@user.errors.full_messages).to include("Email is invalid")
+        @item.product_condition_id = ""
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Product condition can't be blank")
       end
       it "shipping_charges_idが空だと登録できない" do
-        @user.password = ''
-        @user.valid?
-        expect(@user.errors.full_messages).to include("Password can't be blank")
+        @item.shipping_charges_id = ""
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping charges can't be blank")
       end
       it "shipping_area_idが空だと登録できない" do
-        @user.password = '12345'
-        @user.valid?
-        expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
+        @item.shipping_area_id = ""
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping area can't be blank")
       end
       it "days_to_ship_idが空だと登録できない" do
-        @user.password = '123456'
-        @user.valid?
-        expect(@user.errors.full_messages).to include("Password には英字と数字の両方を含めて設定してください")
+        @item.days_to_ship_id = ""
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Days to ship can't be blank")
       end 
       it "priceが空だと登録できない" do
-        @user.password = "sp123456"
-        @user.password_confirmation = "1234567"
-        @user.valid?
-        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+        @item.price = ""
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price can't be blank")
       end
     end
   end
