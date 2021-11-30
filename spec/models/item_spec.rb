@@ -20,7 +20,7 @@ RSpec.describe Item, type: :model do
       it "titleが空だと登録できない" do
         @item.title = ""
         @item.valid?
-        expect(@item.errors.full_messages).to include("Nickname can't be blank")
+        expect(@item.errors.full_messages).to include("Title can't be blank")
       end
       it "explanationが空では登録できない" do
         @item.email = ""
