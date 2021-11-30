@@ -7,7 +7,7 @@ RSpec.describe Item, type: :model do
 
   describe "商品出品登録" do
     context "出品登録できるとき" do
-      it "title、explanation、category_id、product_condition_id、shipping_charges_id、shipping_area_id、days_to_ship_id、priceが存在すれば登録できる" do
+      it "image、title、explanation、category_id、product_condition_id、shipping_charges_id、shipping_area_id、days_to_ship_id、priceが存在すれば登録できる" do
         expect(@item).to be_valid
       end
     end
@@ -15,7 +15,8 @@ RSpec.describe Item, type: :model do
       it "imageが空だと登録できない" do
         @item.image = ""
         @item.valid?
-        expect(@item.errors.full_messages).to include("Nickname can't be blank")
+        binding.pry
+        expect(@item.errors.full_messages).to include("Content can't be blank")
       end
       it "titleが空だと登録できない" do
         @item.title = ""
