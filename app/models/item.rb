@@ -17,7 +17,7 @@ class Item < ApplicationRecord
   validates :shipping_area_id, numericality: { other_than: 1 , message: "can't be blank"} 
   validates :days_to_ship_id, numericality: { other_than: 1 , message: "can't be blank"} 
 
-  validates :price, numericality: { in: 300..9,999,999 }
-  validates :price, format: {with: /^[0-9]*$/, message: "には半角数字を設定してください"}
+  validates :price, numericality: { in: 300..9999999 }
+  validates :price, format: {with: /\A[0-9]+\z/, message: "には半角数字を設定してください"}
 
 end
