@@ -46,7 +46,11 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Product condition can't be blank")
       end
-      
+      it "product_condition_idが1では登録できない" do
+        @item.product_condition_id = "1"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Product condition can't be blank")
+      end
       it "shipping_charges_idが空だと登録できない" do
         @item.shipping_charges_id = ""
         @item.valid?
