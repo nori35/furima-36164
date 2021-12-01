@@ -66,6 +66,11 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping area can't be blank")
       end
+      it "shipping_area_idが1だと登録できない" do
+        @item.shipping_area_id = "1"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping area can't be blank")
+      end
       it "days_to_ship_idが空だと登録できない" do
         @item.days_to_ship_id = ""
         @item.valid?
