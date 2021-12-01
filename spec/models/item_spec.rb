@@ -36,11 +36,17 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
+      it "category_idが1では登録できない" do
+        @item.category_id = "1"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category can't be blank")
+      end
       it "product_condition_idが空では登録できない" do
         @item.product_condition_id = ""
         @item.valid?
         expect(@item.errors.full_messages).to include("Product condition can't be blank")
       end
+      
       it "shipping_charges_idが空だと登録できない" do
         @item.shipping_charges_id = ""
         @item.valid?
@@ -76,7 +82,7 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
       end
-      
+
     end
   end
 end
