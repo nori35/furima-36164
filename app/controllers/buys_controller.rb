@@ -1,5 +1,5 @@
 class BuysController < ApplicationController
   def index
-    #フォームオブジェクトのインスタンスを生成し、インスタンス変数に代入する
+    @buy = Buy.new(buy_params)
   end
 end
