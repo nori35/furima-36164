@@ -1,7 +1,7 @@
 class BuyShippingAddresse
   include ActiveModel::Model
   # 必要なカラムを入れていく
-  attr_accessor :postal_code, :shipping_area_id, :city, :address, :building_name, :telephone, :item_id, :buy, :user_id
+  attr_accessor :postal_code, :shipping_area_id, :city, :address, :building_name, :telephone_number, :item_id, :buy, :user_id
 
   with_options presence: true do
     validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
@@ -16,6 +16,6 @@ class BuyShippingAddresse
   def save
     # 各テーブルにデータを保存する処理を書く
     buy = Buy.create(user_id: user_id, item_id: item_id)
-    ShippingAddresse.create(postal_code: postal_code,  shipping_area_id: shipping_area_id, city: city, address: address, building_name: building_name, telephone: telephone, buy_id: buy.id)
+    ShippingAddresse.create(postal_code: postal_code,  shipping_area_id: shipping_area_id, city: city, address: address, building_name: building_name, telephone_number: telephone_number, buy_id: buy.id)
   end
 end
