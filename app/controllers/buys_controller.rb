@@ -7,6 +7,7 @@ class BuysController < ApplicationController
   end
   def create
     @buy_shipping_addresse = BuyShippingAddresse.new(buy_params)
+    binding.pry
     if @buy_shipping_addresse.valid?
        @buy_shipping_addresse.save
        redirect_to root_path
