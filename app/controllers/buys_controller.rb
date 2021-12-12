@@ -4,10 +4,8 @@ class BuysController < ApplicationController
   end
 
   def create
-  end
-  def create
+    #binding.pry
     @buy_shipping_addresse = BuyShippingAddresse.new(buy_params)
-    binding.pry
     if @buy_shipping_addresse.valid?
        @buy_shipping_addresse.save
        redirect_to root_path
@@ -18,6 +16,6 @@ class BuysController < ApplicationController
 
   private
   def buy_params
-    params.permit(:postal_code, :shipping_area_id, :city, :address, :building_name, :telephone_number, :item_id)
+    params.permit(:postal_code, :shipping_area_id, :city, :address, :building_name, :telephone_number, :item_id).merge(user_id: current_user.id)
   end
 end
