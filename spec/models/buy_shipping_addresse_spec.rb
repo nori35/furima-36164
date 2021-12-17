@@ -33,8 +33,12 @@ RSpec.describe BuyShippingAddresse, type: :model do
       it "shipping_area_idが空だと登録できない" do
         @buy_shipping_addresse.shipping_area_id = ""
         @buy_shipping_addresse.valid?
-        binding.pry
         expect(@buy_shipping_addresse.errors.full_messages).to include("Shipping area can't be blank")
+      end
+      it "cityが空だと登録できない" do
+        @buy_shipping_addresse.city = ""
+        @buy_shipping_addresse.valid?
+        expect(@buy_shipping_addresse.errors.full_messages).to include("City can't be blank")
       end
 
     end
