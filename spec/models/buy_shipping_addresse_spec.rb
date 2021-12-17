@@ -14,9 +14,16 @@ RSpec.describe BuyShippingAddresse, type: :model do
         @buy_shipping_addresse.postal_code = "123-4567"
         expect(@buy_shipping_addresse).to be_valid
       end
-      it "telephone_numberが半角数字の設定であれば登録できる" do
+      it "telephone_numberが半角数字でハイフンなし10桁or11桁の設定であれば登録できる" do
         @buy_shipping_addresse.telephone_number = "09012345678"
-        eexpect(@buy_shipping_addresse).to be_valid
+        expect(@buy_shipping_addresse).to be_valid
+      end
+    end
+    context "出品登録できないとき" do
+      it "postal_codeが空だと登録できない" do
+        @buy_shipping_addresse.postal_code = nil
+        @buy_shipping_addresse.valid?
+        expect(@buy_shipping_addresse.errors.full_messages).to include("Postal code can't be blank")
       end
 
     end
