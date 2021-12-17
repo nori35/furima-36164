@@ -45,6 +45,11 @@ RSpec.describe BuyShippingAddresse, type: :model do
         @buy_shipping_addresse.valid?
         expect(@buy_shipping_addresse.errors.full_messages).to include("Address can't be blank")
       end
+      it "telephone_numberが空だと登録できない" do
+        @buy_shipping_addresse.telephone_number = ""
+        @buy_shipping_addresse.valid?
+        expect(@buy_shipping_addresse.errors.full_messages).to include("Telephone number can't be blank")
+      end
 
     end
   end
