@@ -1,13 +1,14 @@
 class BuysController < ApplicationController
   def index
     @buy = Buy.all.order(created_at: :desc)
+    @buy_shipping_addresses = BuyShippingAddresse.new
   end
 
   def create
     #binding.pry
-    @buy_shipping_addresse = BuyShippingAddresse.new(buy_params)
-    if @buy_shipping_addresse.valid?
-       @buy_shipping_addresse.save
+    @buy_shipping_addresses = BuyShippingAddresse.new(buy_params)
+    if @buy_shipping_addresses.valid?
+       @buy_shipping_addresses.save
        redirect_to root_path
     else
       render action: :index
