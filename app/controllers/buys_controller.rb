@@ -5,7 +5,7 @@ class BuysController < ApplicationController
   end
 
   def create
-    #binding.pry
+    binding.pry
     @buy_shipping_addresses = BuyShippingAddresse.new(buy_params)
     if @buy_shipping_addresses.valid?
        @buy_shipping_addresses.save
