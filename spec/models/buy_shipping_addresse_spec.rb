@@ -2,12 +2,16 @@ require 'rails_helper'
 
 RSpec.describe BuyShippingAddresse, type: :model do
   before do
-    @buy_shipping_addresse = FactoryBot.build(:buy_shipping_addresse)
+    user = FactoryBot.create(:user)
+    item = FactoryBot.create(:item)
+    @buy_shipping_addresse = FactoryBot.build(:buy_shipping_addresse, user_id: user.id, item_id: item.id)
+
+    sleep 0.5
   end
 
   describe "商品購入" do
     context "商品購入できるとき" do
-      it "postal_code、shipping_area_id、city、address、telephone_numberが存在すれば登録できる" do
+      it "postal_code、shipping_area_id、city、address、telephone_number、tokenが存在すれば登録できる" do
         expect(@buy_shipping_addresse).to be_valid
       end
       it "postal_codeが半角数字の設定であれば登録できる" do
@@ -18,6 +22,7 @@ RSpec.describe BuyShippingAddresse, type: :model do
         @buy_shipping_addresse.telephone_number = "09012345678"
         expect(@buy_shipping_addresse).to be_valid
       end
+
     end
     context "出品登録できないとき" do
       it "postal_codeが空だと登録できない" do
@@ -54,6 +59,11 @@ RSpec.describe BuyShippingAddresse, type: :model do
         @buy_shipping_addresse.telephone_number = "090-1234-5678"
         @buy_shipping_addresse.valid?
         expect(@buy_shipping_addresse.errors.full_messages).to include("Telephone number is invalid.")
+      end
+      it "tokenが空では登録できないこと" do
+        @buy_shipping_addresse.token = nil
+        @buy_shipping_addresse.valid?
+        expect(@buy_shipping_addresse.errors.full_messages).to include("Token can't be blank")
       end
 
     end
