@@ -9,7 +9,7 @@
     <div class="item-img-content">
       <%= image_tag @item.image ,class:"item-image" %>
       <%# 商品が売れている場合は、sold outを表示しましょう %>
-      <% if @buy_shipping_addresses.present? %>
+      <% if @item.shipping_area.present? %>
         <div class='sold-out'>
           <span>Sold Out!!</span>
         </div>
@@ -25,7 +25,7 @@
       </span>
     </div>
 
-    <% if user_signed_in? #&& @item.purchase_history == nil %>
+    <% if user_signed_in? && @buy_shipping_addresses == nil %>
       <% if current_user == @item.user%>
         <%= link_to "商品の編集", edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
           <p class="or-text">or</p>
