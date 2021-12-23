@@ -1,4 +1,6 @@
 class BuysController < ApplicationController
+
+  
   def index
     @buy = Buy.all.order(created_at: :desc)
     @buy_shipping_addresses = BuyShippingAddresse.new
