@@ -1,7 +1,7 @@
 class BuysController < ApplicationController
   before_action :set_item, only: [:index, :create]
   before_action :authenticate_user!, only: [:index, :create]
-  before_action :prevent_url, only: [:index]
+  before_action :prevent_url, only: [:index, :create]
   before_action :contributor_confirmation, only: [:index]
 
   def index
@@ -35,7 +35,7 @@ class BuysController < ApplicationController
   end
 
   def prevent_url
-    if @item.user_id != current_user.id
+    if @item.user_id != current_user.id || @item.buy != nil
     redirect_to root_path
     end
   end
