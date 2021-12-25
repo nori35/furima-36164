@@ -73,7 +73,6 @@ RSpec.describe BuyShippingAddresse, type: :model do
       it "telephone_numberが11桁以内でないと登録できない" do
         @buy_shipping_addresse.telephone_number = "123456789101112"
         @buy_shipping_addresse.valid?
-        binding.pry
         expect(@buy_shipping_addresse.errors.full_messages).to include("Telephone number is invalid.")
       end
       it "tokenが空では登録できないこと" do
