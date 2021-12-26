@@ -8,11 +8,12 @@ class BuyShippingAddresse
     validates :city, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: "is invalid. Input full-width characters."}
     validates :address
     validates :telephone_number, format: {with: /\A\d{10,11}\z/, message: "is invalid."}
+    validates :token, presence: true
+    validates :user_id, presence: true
+    validates :item_id, presence: true
+
   end
-  validates :shipping_area_id, numericality: { other_than: 1, message: "can't be blank"}
-  validates :token, presence: true
-  validates :user_id, presence: true
-  validates :item_id, presence: true
+    validates :shipping_area_id, numericality: { other_than: 1, message: "can't be blank"}
 
   def save
     # 各テーブルにデータを保存する処理を書く
