@@ -4,14 +4,14 @@ class BuysController < ApplicationController
   before_action :prevent_url, only: [:index, :create]
 
   def index
-    @buy = Buy.all.order(created_at: :desc)
+    @buy = Buy.all
     @buy_shipping_addresses = BuyShippingAddresse.new
   end
 
   def create
     @buy_shipping_addresses = BuyShippingAddresse.new(buy_params)
     if @buy_shipping_addresses.valid?
-      Payjp.api_key = "sk_test_050f9d142d7918a0d599157a"
+      Payjp.api_key = "sk_test_f0aabd3dc9efd060ceb92794"
       Payjp::Charge.create(
       amount: @item.price,
       card: buy_params[:token],
