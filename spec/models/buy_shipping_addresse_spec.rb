@@ -11,7 +11,7 @@ RSpec.describe BuyShippingAddresse, type: :model do
 
   describe "商品購入" do
     context "商品購入できるとき" do
-      it "postal_code、shipping_area_id、city、address、telephone_number、tokenが存在すれば登録できる" do
+      it "postal_code、shipping_area_id、city、address、telephone_number、token、user_id、item_idが存在すれば登録できる" do
         expect(@buy_shipping_addresse).to be_valid
       end
       it "postal_codeが半角数字の設定であれば登録できる" do
@@ -84,6 +84,16 @@ RSpec.describe BuyShippingAddresse, type: :model do
         @buy_shipping_addresse.token = nil
         @buy_shipping_addresse.valid?
         expect(@buy_shipping_addresse.errors.full_messages).to include("Token can't be blank")
+      end
+      it "user_idが空では登録できないこと" do
+        @buy_shipping_addresse.user_id = nil
+        @buy_shipping_addresse.valid?
+        expect(@buy_shipping_addresse.errors.full_messages).to include("User can't be blank")
+      end
+      it "item_idが空では登録できないこと" do
+        @buy_shipping_addresse.item_id = nil
+        @buy_shipping_addresse.valid?
+        expect(@buy_shipping_addresse.errors.full_messages).to include("Item can't be blank")
       end
 
     end

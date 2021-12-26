@@ -12,6 +12,8 @@ class BuyShippingAddresse
   end
   validates :shipping_area_id, numericality: { other_than: 1, message: "can't be blank"}
   validates :token, presence: true
+  validates :user_id, presence: true
+  validates :item_id, presence: true
 
   def save
     # 各テーブルにデータを保存する処理を書く
