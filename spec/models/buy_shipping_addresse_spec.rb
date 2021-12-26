@@ -11,7 +11,7 @@ RSpec.describe BuyShippingAddresse, type: :model do
 
   describe "商品購入" do
     context "商品購入できるとき" do
-      it "postal_code、shipping_area_id、city、address、telephone_number、token、user_id、item_idが存在すれば登録できる" do
+      it "postal_code、shipping_area_id、city、address、building_name、telephone_number、token、user_id、item_idが存在すれば登録できる" do
         expect(@buy_shipping_addresse).to be_valid
       end
       it "postal_codeが半角数字の設定であれば登録できる" do
@@ -20,6 +20,10 @@ RSpec.describe BuyShippingAddresse, type: :model do
       end
       it "telephone_numberが半角数字でハイフンなし10桁or11桁の設定であれば登録できる" do
         @buy_shipping_addresse.telephone_number = "09012345678"
+        expect(@buy_shipping_addresse).to be_valid
+      end
+      it "building_nameが空の設定でも登録できる" do
+        @buy_shipping_addresse.building_name = ""
         expect(@buy_shipping_addresse).to be_valid
       end
 
