@@ -11,7 +11,7 @@ class BuysController < ApplicationController
   def create
     @buy_shipping_addresses = BuyShippingAddresse.new(buy_params)
     if @buy_shipping_addresses.valid?
-      Payjp.api_key = "sk_test_f0aabd3dc9efd060ceb92794"
+      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
       Payjp::Charge.create(
       amount: @item.price,
       card: buy_params[:token],
