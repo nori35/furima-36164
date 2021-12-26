@@ -4,7 +4,6 @@ class BuysController < ApplicationController
   before_action :prevent_url, only: [:index]
 
   def index
-    @buy = Buy.all
     @buy_shipping_addresses = BuyShippingAddresse.new
   end
 
