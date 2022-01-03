@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :edit, :destroy]
+  before_action :prevent_url, only: [:edit, :update, :destroy]
   before_action :contributor_confirmation, only: [:edit, :update, :destroy]
 
   def index
@@ -49,6 +50,12 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def prevent_url
+    if @item.user_id != current_user.id || @item.buy != nil
+      redirect_to root_path
+    end
   end
 
   def contributor_confirmation
